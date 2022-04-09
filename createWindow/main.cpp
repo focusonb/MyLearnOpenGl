@@ -37,7 +37,7 @@ int main() {
 	cubePainter.setModelMatrix(model);
 
 	glm::mat4 view(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.5f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.5f));
 	//view = glm::rotate(view, glm::radians(30.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 	cubePainter.setViewMatrix(view);
 
@@ -45,7 +45,9 @@ int main() {
 		, 800.0f / 800.0f, 0.1f, 100.0f));
 
 	
-	cubePainter.setUniformVec3(glm::vec3 (0.0, 0.0, 9.0), "lightPos");
+	cubePainter.setUniformVec3(glm::vec3 (0.0, 1.0, 3.0), "lightPos");
+
+	cubePainter.setUniformVec3(glm::vec3 (0.0, 0.0, 0.0), "viewPos");
 
 	//glEnable(GL_DEPTH_TEST);
 	float count = 0;
