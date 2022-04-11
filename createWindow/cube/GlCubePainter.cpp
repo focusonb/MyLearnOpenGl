@@ -8,6 +8,7 @@
 #include "../ShaderReader/MyShader.h"
 #include "../TextureManager/TextureManager.h"
 #include "../GlfwConfigure//GlfwConfigure.h"
+#include "../ShaderReader/ShaderManager.h"
 
 #include <iostream>
 using std::cout;
@@ -176,15 +177,22 @@ void GlCubePainter::setUniformVec3(const glm::vec3 & vec, const char * uniform)
 {
 	int uniformId = glGetUniformLocation(shaderProgram, uniform);
 	glUniform3fv(uniformId, 1, &vec[0]);
+}
 
+void GlCubePainter::setUniformFloat1(const float & value, const char * uniform)
+{
+	int uniformId = glGetUniformLocation(shaderProgram, uniform);
+	glUniform1fv(uniformId, 1, &value);
 }
 
 bool GlCubePainter::configureShader(CorlorChess color)
 {
-	MyShader myShader(vertextShaderPath, fragmentShaderPath);
+	ShaderManager shaderManager(vertextShaderPath, fragmentShaderPath);
+	if (shaderManager.configure() == false)
+		return false;
 
 	//get shader program
-	shaderProgram = myShader.getShaderProgram();
+	shaderProgram = shaderManager.getShaderProgramId();
 
 	//TextureManager textureManager;
 	//textureManager.setChannelType(GL_RGB);

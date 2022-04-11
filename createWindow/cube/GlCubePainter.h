@@ -24,6 +24,7 @@ public:
 	void setViewMatrix(const glm::mat4& mat);
 	void setProjectionMatrix(const glm::mat4& mat);
 	void setUniformVec3(const glm::vec3& vec, const char* uniform);
+	void setUniformFloat1(const float& value, const char* uniform);
 
 protected:
 	bool configureShader(CorlorChess color);
@@ -31,7 +32,6 @@ protected:
 private:
 	GLuint VAO, VAO1, VBO, VBO1;
 	unsigned int shaderProgram;
-	unsigned int shaderProgramOutSquare;
 	unsigned int texture1;
 	int m_widthWindow;
 	int m_heightWindow;

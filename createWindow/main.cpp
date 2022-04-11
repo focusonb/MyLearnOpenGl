@@ -45,9 +45,15 @@ int main() {
 		, 800.0f / 800.0f, 0.1f, 100.0f));
 
 	
-	cubePainter.setUniformVec3(glm::vec3 (0.0, 1.0, 3.0), "lightPos");
+	cubePainter.setUniformVec3(glm::vec3 (0.4, 0.1, 0.1), "material.ambient");
+	cubePainter.setUniformVec3(glm::vec3 (0.4, 0.1, 0.1), "material.diffuse");
+	cubePainter.setUniformVec3(glm::vec3 (0.5, 0.5, 0.5), "material.specular");
+	cubePainter.setUniformFloat1(32.0, "material.shininess");
+	cubePainter.setUniformVec3(glm::vec3 (0.0, 0.0, 5.0), "light.position");
+	cubePainter.setUniformVec3(glm::vec3 (0.2, 0.2, 0.2), "light.ambient");
+	cubePainter.setUniformVec3(glm::vec3 (0.5, 0.5, 0.5), "light.diffuse");
+	cubePainter.setUniformVec3(glm::vec3 (1.0, 1.0, 1.0), "light.specular");
 
-	cubePainter.setUniformVec3(glm::vec3 (0.0, 0.0, 0.0), "viewPos");
 
 	//glEnable(GL_DEPTH_TEST);
 	float count = 0;
