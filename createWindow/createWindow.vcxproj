@@ -149,6 +149,7 @@
     <ClInclude Include="ShaderReader\FIleManager\FileManagerControler.h" />
     <ClInclude Include="ShaderReader\FIleManager\WFIleTextManager.h" />
     <ClInclude Include="ShaderReader\MyShader.h" />
+    <ClInclude Include="ShaderReader\ShaderBuilder.h" />
     <ClInclude Include="ShaderReader\ShaderManager.h" />
     <ClInclude Include="TextureManager\TextureManager.h" />
   </ItemGroup>

@@ -59,9 +59,6 @@
     <ClInclude Include="ShaderReader\FIleManager\FileManagerControler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderReader\FIleManager\WFIleTextManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderReader\MyShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShaderReader\ShaderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderReader\FIleManager\WFIleTextManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderReader\ShaderBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

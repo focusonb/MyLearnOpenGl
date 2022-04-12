@@ -8,7 +8,7 @@
 #include "../ShaderReader/MyShader.h"
 #include "../TextureManager/TextureManager.h"
 #include "../GlfwConfigure//GlfwConfigure.h"
-#include "../ShaderReader/ShaderManager.h"
+#include "../ShaderReader/ShaderBuilder.h"
 
 #include <iostream>
 using std::cout;
@@ -69,7 +69,7 @@ static const double circleVertices[verticesNum] = {
 
 
 GlCubePainter::GlCubePainter(int widthWindow, int heightWindow, CorlorChess color)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderManager(vertextShaderPath, fragmentShaderPath))
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderBuilder(vertextShaderPath, fragmentShaderPath))
 {
 	m_myShader = m_shaderManager->getMyShader();
 	if (configureShader(color) == false) {
@@ -78,7 +78,7 @@ GlCubePainter::GlCubePainter(int widthWindow, int heightWindow, CorlorChess colo
 }
 
 GlCubePainter::GlCubePainter(const PointGl& point, int width, CorlorChess color, int widthWindow, int heightWindow)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderManager(vertextShaderPath, fragmentShaderPath))
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderBuilder(vertextShaderPath, fragmentShaderPath))
 {
 	m_myShader = m_shaderManager->getMyShader();
 	addOne(point, width);

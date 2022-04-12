@@ -6,10 +6,10 @@
 
 using std::unique_ptr;
 
-class ShaderManager {
+class ShaderBuilder {
 public:
-	ShaderManager() = delete;
-	ShaderManager(const char* vertexPath, const char* fragmentPath)
+	ShaderBuilder() = delete;
+	ShaderBuilder(const char* vertexPath, const char* fragmentPath)
 		:m_vertexPath(vertexPath), m_fragmentPath(fragmentPath){
 		FileManagerControler fileManagerControler(vertexPath);
 		const char* vertexSource = (fileManagerControler.getFileManager())->outPut();
@@ -22,7 +22,7 @@ public:
 		return std::move(m_shader);
 	}
 
-	~ShaderManager() {
+	~ShaderBuilder() {
 	}
 
 private:

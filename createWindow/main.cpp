@@ -44,7 +44,6 @@ int main() {
 	cubePainter.setProjectionMatrix(glm::perspective(glm::radians(45.0f)
 		, 800.0f / 800.0f, 0.1f, 100.0f));
 
-	
 	cubePainter.setUniformVec3(glm::vec3 (0.4, 0.1, 0.1), "material.ambient");
 	cubePainter.setUniformVec3(glm::vec3 (0.4, 0.1, 0.1), "material.diffuse");
 	cubePainter.setUniformVec3(glm::vec3 (0.5, 0.5, 0.5), "material.specular");

@@ -9,7 +9,7 @@
 using std::unique_ptr;
 
 enum class CorlorChess { white,black};
-class ShaderManager;
+class ShaderBuilder;
 
 using GlSize = int;
 using PointGl = std::pair<GlSize, GlSize>;
@@ -47,6 +47,6 @@ private:
 	list<GLuint> m_vao;
 	list<GLuint> m_vao1;
 
-	ShaderManager* m_shaderManager;
+	ShaderBuilder* m_shaderManager;
 	unique_ptr<MyShader> m_myShader;
 };
