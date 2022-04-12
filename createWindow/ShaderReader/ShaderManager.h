@@ -1,7 +1,11 @@
 #pragma once
+#include <memory>
 #include "Myshader.h"
 #include "FileManager/FileManagerControler.h"
 #include "FIleManager/WFIleTextManager.h"
+
+using std::unique_ptr;
+
 class ShaderManager {
 public:
 	ShaderManager() = delete;
@@ -11,20 +15,18 @@ public:
 		const char* vertexSource = (fileManagerControler.getFileManager())->outPut();
 		FileManagerControler fileManagerControler2(fragmentPath);
 		const char* fragmentSource = (fileManagerControler2.getFileManager())->outPut();
-		m_shader = new MyShader(vertexSource, fragmentSource);
+		auto unique_shader = std::make_unique<MyShader>(vertexSource, fragmentSource);
+		m_shader.swap(unique_shader);
 	}
-	bool configure() {
-		return m_shader->configure();
+	unique_ptr<MyShader> getMyShader() {
+		return std::move(m_shader);
 	}
-	unsigned int getShaderProgramId() const {
-		return m_shader->getShaderProgram();
-	};
+
 	~ShaderManager() {
-		delete m_shader;
 	}
 
 private:
-	MyShader* m_shader;
+	unique_ptr<MyShader> m_shader;
 	const char* m_vertexPath;
 	const char* m_fragmentPath;
 

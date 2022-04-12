@@ -81,16 +81,19 @@ bool MyShader::loadShader(const char * source, int shaderType, GLuint* shader)
 
 void MyShader::setModelMatrix(const glm::mat4& mat)
 {
+	m_modelLoc = glGetUniformLocation(m_shaderProgram, "model");
 	glUniformMatrix4fv(m_modelLoc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
 void MyShader::setViewMatrix(const glm::mat4& mat)
 {
+	m_viewLoc = glGetUniformLocation(m_shaderProgram, "view");
 	glUniformMatrix4fv(m_viewLoc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
 void MyShader::setProjectionMatrix(const glm::mat4& mat)
 {
+	m_projectionLoc = glGetUniformLocation(m_shaderProgram, "projection");
 	glUniformMatrix4fv(m_projectionLoc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 

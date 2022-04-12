@@ -69,16 +69,18 @@ static const double circleVertices[verticesNum] = {
 
 
 GlCubePainter::GlCubePainter(int widthWindow, int heightWindow, CorlorChess color)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow)
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderManager(vertextShaderPath, fragmentShaderPath))
 {
+	m_myShader = m_shaderManager->getMyShader();
 	if (configureShader(color) == false) {
 		cout << "configureShader failed" << endl;
 	};
 }
 
 GlCubePainter::GlCubePainter(const PointGl& point, int width, CorlorChess color, int widthWindow, int heightWindow)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow)
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderManager(vertextShaderPath, fragmentShaderPath))
 {
+	m_myShader = m_shaderManager->getMyShader();
 	addOne(point, width);
 	if (configureShader(color) == false) {
 		cout << "configureShader failed" << endl;
@@ -160,39 +162,36 @@ void GlCubePainter::addOne(const PointGl& point, int width)
 
 void GlCubePainter::setModelMatrix(const glm::mat4& mat)
 {
-	glUniformMatrix4fv(m_modelLoc, 1, GL_FALSE, glm::value_ptr(mat));
+	m_myShader->setModelMatrix(mat);
 }
 
 void GlCubePainter::setViewMatrix(const glm::mat4& mat)
 {
-	glUniformMatrix4fv(m_viewLoc, 1, GL_FALSE, glm::value_ptr(mat));
+	m_myShader->setViewMatrix(mat);
 }
 
 void GlCubePainter::setProjectionMatrix(const glm::mat4& mat)
 {
-	glUniformMatrix4fv(m_projectionLoc, 1, GL_FALSE, glm::value_ptr(mat));
+	m_myShader->setProjectionMatrix(mat);
 }
 
 void GlCubePainter::setUniformVec3(const glm::vec3 & vec, const char * uniform)
 {
-	int uniformId = glGetUniformLocation(shaderProgram, uniform);
-	glUniform3fv(uniformId, 1, &vec[0]);
+	m_myShader->setUniformVec3(vec, uniform);
 }
 
 void GlCubePainter::setUniformFloat1(const float & value, const char * uniform)
 {
-	int uniformId = glGetUniformLocation(shaderProgram, uniform);
-	glUniform1fv(uniformId, 1, &value);
+	m_myShader->setUniformFloat1(value, uniform);
 }
 
 bool GlCubePainter::configureShader(CorlorChess color)
 {
-	ShaderManager shaderManager(vertextShaderPath, fragmentShaderPath);
-	if (shaderManager.configure() == false)
+	if (m_myShader->configure() == false)
 		return false;
 
 	//get shader program
-	shaderProgram = shaderManager.getShaderProgramId();
+	shaderProgram = m_myShader->getShaderProgram();
 
 	//TextureManager textureManager;
 	//textureManager.setChannelType(GL_RGB);
@@ -215,10 +214,5 @@ bool GlCubePainter::configureShader(CorlorChess color)
 		return false;
 	}
 	glUseProgram(shaderProgram);
-	m_modelLoc = glGetUniformLocation(shaderProgram, "model");
-
-	m_viewLoc = glGetUniformLocation(shaderProgram, "view");
-
-	m_projectionLoc = glGetUniformLocation(shaderProgram, "projection");
 	return true;
 }

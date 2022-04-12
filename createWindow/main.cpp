@@ -55,7 +55,6 @@ int main() {
 	cubePainter.setUniformVec3(glm::vec3 (1.0, 1.0, 1.0), "light.specular");
 
 
-	//glEnable(GL_DEPTH_TEST);
 	float count = 0;
 	while (!glfwWindowShouldClose(window))
 	{
