@@ -108,3 +108,8 @@ void MyShader::setUniformFloat1(const float & value, const char * uniform)
 	int uniformId = glGetUniformLocation(m_shaderProgram, uniform);
 	glUniform1fv(uniformId, 1, &value);
 }
+
+void MyShader::setUniformInt1(const int & value, const char * uniform)
+{
+	glUniform1i(glGetUniformLocation(m_shaderProgram, uniform), value);
+}

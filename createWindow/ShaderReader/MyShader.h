@@ -21,6 +21,7 @@ public:
 	void setProjectionMatrix(const glm::mat4& mat);
 	void setUniformVec3(const glm::vec3& vec, const char* uniform);
 	void setUniformFloat1(const float& value, const char* uniform);
+	void setUniformInt1(const int& value, const char* uniform);
 	int getUniformId(const char*	uniformName) const;
 	unsigned int getShaderProgram() const;
 protected:

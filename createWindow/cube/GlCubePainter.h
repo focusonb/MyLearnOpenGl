@@ -17,8 +17,8 @@ using PointGl = std::pair<GlSize, GlSize>;
 class GlCubePainter : public GlPainter
 {
 public:
-	GlCubePainter(int widthWindow, int heightWindow, CorlorChess color = CorlorChess::white);
-	GlCubePainter(const PointGl& point, int width, CorlorChess color, int widthWindow, int heightWindow);
+	GlCubePainter(int widthWindow, int heightWindow);
+	GlCubePainter(const PointGl& point, int width, int widthWindow, int heightWindow);
 	~GlCubePainter() {
 		delete m_shaderManager;
 	}
@@ -35,12 +35,13 @@ public:
 	void setUniformFloat1(const float& value, const char* uniform);
 
 protected:
-	bool configureShader(CorlorChess color);
+	bool configureShader();
 
 private:
-	GLuint VAO, VAO1, VBO, VBO1;
+	GLuint m_VAO, m_VBO;
 	unsigned int shaderProgram;
-	unsigned int texture1;
+	unsigned int m_texture0;
+	unsigned int m_texture1;
 	int m_widthWindow;
 	int m_heightWindow;
 

@@ -145,6 +145,7 @@
     <ClInclude Include="CallBack\mouse_click_callback.h" />
     <ClInclude Include="cube\GlCubePainter.h" />
     <ClInclude Include="cube\GlPainter.h" />
+    <ClInclude Include="cube\setCube.h" />
     <ClInclude Include="GlfwConfigure\GlfwConfigure.h" />
     <ClInclude Include="ShaderReader\FIleManager\FileManagerControler.h" />
     <ClInclude Include="ShaderReader\FIleManager\WFIleTextManager.h" />
