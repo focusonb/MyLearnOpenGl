@@ -8,7 +8,6 @@
 #include <memory>
 using std::unique_ptr;
 
-enum class CorlorChess { white,black};
 class ShaderBuilder;
 
 using GlSize = int;
