@@ -28,7 +28,7 @@ protected:
 	bool loadShader(const char* source, int shaderType, GLuint* shader);
 
 private:
-	unsigned int m_shaderProgram;
+	unsigned int m_shaderProgram = 0;
 	char* m_vertexShaderSource;
 	char* m_fragmentShaderSource;
 	int m_modelLoc;

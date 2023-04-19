@@ -15,11 +15,11 @@ using std::cout;
 using std::endl;
 
 
-static const char* vertextShaderPath = "shader/squareShader/vertextShaderSquare.txt";
-static const char* fragmentShaderPath = "shader/squareShader/fragmentShaderSquare.txt";
+static const char* vertextShaderPath = "../shader/squareShader/vertextShaderSquare.txt";
+static const char* fragmentShaderPath = "../shader/squareShader/fragmentShaderSquare.txt";
 
-static const char* MY_IMAGE_PATH_1 = "image/container.png";
-static const char* MY_IMAGE_PATH_2 = "image/container_specular.png";
+static const char* MY_IMAGE_PATH_1 = "../image/container.png";
+static const char* MY_IMAGE_PATH_2 = "../image/container_specular.png";
 
 static const int verticesNum = 288;
 static const double circleVertices[verticesNum] = {
@@ -68,18 +68,20 @@ static const double circleVertices[verticesNum] = {
 
 
 GlCubePainter::GlCubePainter(int widthWindow, int heightWindow)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderBuilder(vertextShaderPath, fragmentShaderPath))
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow)
 {
-	m_myShader = m_shaderManager->getMyShader();
+	ShaderBuilder shaderBuilder(vertextShaderPath, fragmentShaderPath);
+	m_myShader = shaderBuilder.getMyShader();
 	if (configureShader() == false) {
 		cout << "configureShader failed" << endl;
 	};
 }
 
 GlCubePainter::GlCubePainter(const PointGl& point, int width, int widthWindow, int heightWindow)
-	:m_widthWindow(widthWindow), m_heightWindow(heightWindow), m_shaderManager(new ShaderBuilder(vertextShaderPath, fragmentShaderPath))
+	:m_widthWindow(widthWindow), m_heightWindow(heightWindow)
 {
-	m_myShader = m_shaderManager->getMyShader();
+	ShaderBuilder shaderBuilder(vertextShaderPath, fragmentShaderPath);
+	m_myShader = shaderBuilder.getMyShader();
 	addOne(point, width);
 	if (configureShader() == false) {
 		cout << "configureShader failed" << endl;
@@ -143,12 +145,13 @@ void GlCubePainter::addOne(const PointGl& point, int width)
 		}
 	}
 
-	glGenVertexArrays(1, &m_VAO);
-	glBindVertexArray(m_VAO);
+	GLuint VAO, VBO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
 	//VBO
-	glGenBuffers(1, &m_VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(circleVertices), circleVertices, GL_STATIC_DRAW);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(tmpVertices), tmpVertices, GL_STATIC_DRAW);
 
@@ -159,9 +162,9 @@ void GlCubePainter::addOne(const PointGl& point, int width)
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 
-	m_vao.push_back(m_VAO);
-	GlPainter::vao.push_back(m_VAO);
-	GlPainter::vao.push_back(m_VBO);
+	m_vao.push_back(VAO);
+	GlPainter::vao.push_back(VAO);
+	//GlPainter::vao.push_back(VBO);
 }
 
 void GlCubePainter::setModelMatrix(const glm::mat4& mat)

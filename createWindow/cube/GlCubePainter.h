@@ -19,7 +19,6 @@ public:
 	GlCubePainter(int widthWindow, int heightWindow);
 	GlCubePainter(const PointGl& point, int width, int widthWindow, int heightWindow);
 	~GlCubePainter() {
-		delete m_shaderManager;
 	}
 	
 	void draw() const override;
@@ -37,7 +36,6 @@ protected:
 	bool configureShader();
 
 private:
-	GLuint m_VAO, m_VBO;
 	unsigned int shaderProgram;
 	unsigned int m_texture0;
 	unsigned int m_texture1;
@@ -46,7 +44,5 @@ private:
 
 	list<GLuint> m_vao;
 	list<GLuint> m_vao1;
-
-	ShaderBuilder* m_shaderManager;
 	unique_ptr<MyShader> m_myShader;
 };
