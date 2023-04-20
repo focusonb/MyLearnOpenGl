@@ -1,4 +1,4 @@
-Qt Game rewrirtten with OpenGL
+Rotating cube with OpenGL
 ==============================
 
 Build
